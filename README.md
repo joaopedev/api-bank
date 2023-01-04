@@ -16,7 +16,7 @@ Como queremos agradar muito os nossos clientes, logo, pensamos em disponibilizar
 
 O cliente poderá efetuar uma recarga de um valor qualquer para a sua conta de preferência.
 
-E o objetivo principal que é a transferência de valores entre as contas dos clientes.
+O objetivo principal é a transferência de valores entre as contas dos clientes.
 
 ## Requisitos Funcionais
 
