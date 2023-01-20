@@ -43,7 +43,7 @@ O objetivo principal é a transferência de valores entre as contas dos clientes
 
 Você pode utilizar qualquer linguagem, ferramenta, framework ou biblioteca JavaScript.
 
-Caso tenha quaisquer dúvidas sobre este teste, a qualquer momento, sinta-se à vontade para entrar em contato através do e-mail dev@paytime.com.br.
+Caso tenha quaisquer dúvidas sobre este teste, a qualquer momento, sinta-se à vontade para entrar em contato através do e-mail rh@paytime.com.br.
 
 Commite suas alterações de forma organizada.
 
@@ -57,6 +57,6 @@ No README deve constar como instalar e executar a aplicação.
 
 - Lembre-se que o usuário só pode ter um CPF e/ou ser dono de mais de um CNPJ.
 
-- Não se esqueça efetuar o Pull Request e nos avisar que você terminou o desafio (dev@paytime.com.br).
+- Não se esqueça efetuar o Pull Request e nos avisar que você terminou o desafio (rh@paytime.com.br).
 
 - Boa Sorte.
