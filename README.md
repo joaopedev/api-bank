@@ -1,62 +1,68 @@
-# Paytime - BackEnd Nível 1
+# Bank API
 
-Primeiramente, obrigado pelo seu interesse em trabalhar conosco.
+API Restful para o teste da PayTime.
 
-A seguir você encontrará todos as informações necessárias para fazer seu teste.
+## Dependencias de sistema 
 
-## Estudo de Caso
+- Node.js
+- Docker
 
-Contratamos os seus serviços para desenvolver uma aplicação que será responsável por executar transferências de valores entre contas.
+## Banco de Dados
 
-A aplicação se baseia em um gerenciamento de uma ou mais contas bancárias, sendo elas Físicas e/ou Jurídicas.
+Essa aplicacao vem com um arquivo `docker-compose.yml` utilizado para configurar um banco PostgreSQL no host. 
 
-Na versão 1.0 BETA do nosso sistema, precisamos apenas que as contas sejam identificadas via CPF ou CNPJ, outros dados são opcionais.
+Para inicializar o banco de dados de desenvolvimento use o script `startDB.sh` no root do projeto. Para pausar, o `stopDB.sh`.
 
-Como queremos agradar muito os nossos clientes, logo, pensamos em disponibilizar mais de uma conta para cada.
+Se tiver familiaridade com `docker-compose`, comandos do dia a dia irao funcionar normalmente.
 
-O cliente poderá efetuar uma recarga de um valor qualquer para a sua conta de preferência.
+## Migracoes e Seeding
 
-O objetivo principal é a transferência de valores entre as contas dos clientes.
+Com o banco rodando, instale o CLI do `knex` para executar as migracoes and seeding.
 
-## Requisitos Funcionais
+```sh
+knex migrate:latest
+knex seed:run
+```
 
-- Seu serviço deve:
-    - ser acessível através de uma API REST
-    - conter um gerenciamento de usuários e contas
-    - conter um gerenciamento de saldo das contas
+## Variaveis de Ambiente 
 
-## Requisitos não funcionais
+```sh
+cat > ./.env <<EOL
 
-- Seu serviço deve ser construído com atenção aos seguintes aspectos:
-    - Organização
-    - Padronização
-    - Tratamento de Erros
-    - Disponibilidade
-    - Persistência
-    - Manutenibilidade
-    - Segurança
+# porta do servidor
+PORT=3000
 
-- Será um diferencial se você apresentar uma **documentação** que represente a arquitetura de seu serviço e, se necessário, uma explicação para suas decisões de arquitetura.
+# secret para autorizacao de rotas privadas
+AUTHORIZATION=grandeSegredo
 
+# host do banco de dados 
+HOST_BD=localhost
 
-## Detalhes
+# nome do banco de dados
+NOME_BD=postgres
 
-Você pode utilizar qualquer linguagem, ferramenta, framework ou biblioteca JavaScript.
+# usuario do banco de dados 
+USER_BD=postgres
 
-Caso tenha quaisquer dúvidas sobre este teste, a qualquer momento, sinta-se à vontade para entrar em contato através do e-mail rh@paytime.com.br.
+# senha do banco de dados
+PASSWORD_BD=example
+EOL
+```
 
-Commite suas alterações de forma organizada.
+## Iniciar servidor de desenvolvimento
 
-Você deve criar um fork deste repositorio, ao terminar todo o desafio você devera abrir um **Pull Request**.
+```sh
+npm run dev
+```
 
-No README deve constar como instalar e executar a aplicação.
+## Interagir com a API por Postman
 
-## Dicas importantes:
+Essa aplicacao vem com uma colecao de requests do Postman do root do projeto que irao te ajudar a navegar esse servico.
 
-- Por uma questão de aderência a posição, a utilização de TypeScript, Framework AdonisJS ou NestJS para qual está descrita esta vaga será um diferencial.
+Use a funcao `Import` do Postman para importar a colecao.
 
-- Lembre-se que o usuário só pode ter um CPF e/ou ser dono de mais de um CNPJ.
+**Atencao:** os dados no corpo requests podem precisar de mudancas para funcionar
 
-- Não se esqueça efetuar o Pull Request e nos avisar que você terminou o desafio (rh@paytime.com.br).
+## Construir imagem Docker
 
-- Boa Sorte.
+TODO

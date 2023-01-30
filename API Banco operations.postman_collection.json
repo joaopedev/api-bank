@@ -1,0 +1,259 @@
+{
+	"info": {
+		"_postman_id": "638ea152-6317-40ee-a313-28e64ede533a",
+		"name": "API Banco operations",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25477242"
+	},
+	"item": [
+		{
+			"name": "Create Usuario CPF",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"jassadofifa@live.com\",\r\n  \"password\": \"1234\",\r\n  \"cpf\": \"000.000.000-00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/cadastrarUsuarioCPF",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"cadastrarUsuarioCPF"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login Usuario CPF",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cpf\": \"000.000.000-00\",\r\n    \"password\": \"1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar Conta Usuario CPF",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "AUTHORIZATION",
+						"value": "grandeSegredo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_usuario\": \"501eda67-546e-463c-90df-df5818a91a9f\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/private/conta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"private",
+						"conta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Contas Usuario CPF",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "AUTHORIZATION",
+						"value": "grandeSegredo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/private/conta?id_usuario=501eda67-546e-463c-90df-df5818a91a9f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"private",
+						"conta"
+					],
+					"query": [
+						{
+							"key": "id_usuario",
+							"value": "501eda67-546e-463c-90df-df5818a91a9f"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Depositar 50 Reais Teste",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "AUTHORIZATION",
+						"value": "grandeSegredo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_conta\": \"0b0107a8-3023-4495-bb5c-ee475393f982\",\r\n    \"id_tipo\": 1,\r\n    \"valor\": 10,\r\n    \"id_conta_destino\": \"0b0107a8-3023-4495-bb5c-ee475393f982\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/private/transaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"private",
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transferencias",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "AUTHORIZATION",
+						"value": "grandeSegredo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_conta\": \"0b0107a8-3023-4495-bb5c-ee475393f98d\",\r\n    \"id_tipo\": 3,\r\n    \"valor\": 3,\r\n    \"id_conta_destino\": \"ee8b95bd-3e05-45ee-a737-e25f9b72647d\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/private/transaction",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"private",
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Transacoes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "AUTHORIZATION",
+						"value": "grandeSegredo",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/private/transaction?id_conta=0b0107a8-3023-4495-bb5c-ee475393f982",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"private",
+						"transaction"
+					],
+					"query": [
+						{
+							"key": "id_conta",
+							"value": "0b0107a8-3023-4495-bb5c-ee475393f982"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
