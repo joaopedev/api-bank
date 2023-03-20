@@ -1,6 +1,6 @@
 # Bank API
 
-API Restful para o teste da PayTime.
+API Restful em formato bancario.
 
 ## Dependencias de sistema 
 
@@ -65,4 +65,8 @@ Use a funcao `Import` do Postman para importar a colecao.
 
 ## Construir imagem Docker
 
-TODO
+```sh
+docker run Container
+```
+
+Para criação da imagem do container docker
