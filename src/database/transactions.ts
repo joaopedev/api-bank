@@ -21,6 +21,8 @@ export class Transaction {
         return this.deposito(transacao);
       case TypeTransaction.TRANSFERENCIA:
         return this.transferencia(transacao);
+      case TypeTransaction.SAQUE:
+        return this.saque(transacao);  
       default:
         throw new Error("Tipo de transação não cadastrada");
     }
@@ -50,6 +52,53 @@ export class Transaction {
       trx.rollback();
       throw error;
     }
+  }
+
+   private static saque(transacao: TransactionModel): Promise<boolean> {
+    return new Promise(async (resolve, reject) => {
+      const trx = await knex.transaction();
+
+      trx("contas")
+        .select("*")
+        .where("id_conta", transacao.id_conta)
+        .then((contas) => {
+          let conta: AccountModel = contas[0];
+
+          if (transacao.valor > conta.saldo) {
+            reject(
+              "Você não possui saldo o suficiente para realizar esta operação"
+            );
+          } else {
+            transacao.valor = conta.saldo;
+            conta.saldo = Number(conta.saldo) - transacao.valor;
+            transacao.valor = conta.saldo;
+
+            trx("contas")
+              .update(conta)
+              .where("id_conta", conta.id)
+              .then(() => {
+                trx("transacoes")
+                  .insert(transacao)
+                  .then(() => {
+                    trx.commit();
+                    resolve(true);
+                  })
+                  .catch((erro) => {
+                    trx.rollback();
+                    reject(erro);
+                  });
+              })
+              .catch((erro) => {
+                trx.rollback();
+                reject(erro);
+              });
+          }
+        })
+        .catch((erro) => {
+          trx.rollback();
+          reject(erro);
+        });
+    });
   }
   private static async transferencia(
     transacao: TransactionModel

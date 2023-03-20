@@ -11,7 +11,7 @@ export = (app: Application) => {
 
       Conta.cadastrarConta(conta)
         .then((conta) => {
-          res.json({ message: "conta cadastrada com sucesso", conta: conta });
+          res.json({ message: "Conta cadastrada com sucesso", conta: conta });
         })
         .catch((erro) => {
           next(createError(HTTP_ERRORS.ERRO_BANCO, erro));
